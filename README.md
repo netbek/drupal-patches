@@ -23,7 +23,7 @@ Patch: [ckeditor-instance-config.patch](https://raw.github.com/netbek/drupal-pat
 
 This patch deletes `picture_polyfill_version` on uninstall.
 
-Version: 7.x-2.x-dev
+Version: 7.x-2.x commit [741f444](http://drupalcode.org/project/picture.git/commit/741f444)
 
 Patch: [picture-delete-variable-picture-polyfill-version-2443295-1.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/picture/picture-delete-variable-picture-polyfill-version-2443295-1.patch)
 
@@ -32,6 +32,6 @@ Patch: [picture-delete-variable-picture-polyfill-version-2443295-1.patch](https:
 
 This patch deletes formatter settings on uninstall.
 
-Version: 7.x-2.x-dev
+Version: 7.x-2.x commit [741f444](http://drupalcode.org/project/picture.git/commit/741f444)
 
 Patch: [picture-delete-formatter-settings-on-uninstall-2443319-1_0.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/picture/picture-delete-formatter-settings-on-uninstall-2443319-1_0.patch)
