@@ -1,0 +1,18 @@
+diff --git a/includes/ckeditor.utils.js b/includes/ckeditor.utils.js
+index 90ee058..1d48ad2 100644
+--- a/includes/ckeditor.utils.js
++++ b/includes/ckeditor.utils.js
+@@ -127,6 +127,13 @@ if (typeof window.CKEDITOR_BASEPATH === 'undefined') {
+       }
+     }
+ 
++    if (Drupal.settings.ckeditor.instanceConfig && Drupal.settings.ckeditor.instanceConfig[textarea_id]) {
++      var instanceConfig = Drupal.settings.ckeditor.instanceConfig[textarea_id];
++      for (var key in instanceConfig){
++        textarea_settings[key] = instanceConfig[key];
++      }
++    }
++
+     //remove width 100% from settings because this may cause problems with theme css
+     if (textarea_settings.width == '100%') textarea_settings.width = '';
+ 
