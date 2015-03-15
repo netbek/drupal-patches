@@ -17,3 +17,21 @@ drupal_add_js(array('ckeditor' => array('instanceConfig' => array($instance => a
 Version: 7.x-1.x commit [8499587](http://drupalcode.org/project/ckeditor.git/commit/8499587)
 
 Patch: [ckeditor-instance-config.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/ckeditor/ckeditor-instance-config.patch)
+
+
+### Picture - Issue [2443295](https://www.drupal.org/node/2443295#comment-9671233)
+
+This patch deletes `picture_polyfill_version` on uninstall.
+
+Version: 7.x-2.x-dev
+
+Patch: [picture-delete-variable-picture-polyfill-version-2443295-1.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/picture/picture-delete-variable-picture-polyfill-version-2443295-1.patch)
+
+
+### Picture - Issue [2443319](https://www.drupal.org/node/2443319#comment-9671327)
+
+This patch deletes formatter settings on uninstall.
+
+Version: 7.x-2.x-dev
+
+Patch: [picture-delete-formatter-settings-on-uninstall-2443319-1_0.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/picture/picture-delete-formatter-settings-on-uninstall-2443319-1_0.patch)

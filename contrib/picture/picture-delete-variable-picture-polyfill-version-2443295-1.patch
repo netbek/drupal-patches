@@ -1,0 +1,12 @@
+diff --git a/picture.install b/picture.install
+index e891d1d..fd94d9b 100644
+--- a/picture.install
++++ b/picture.install
+@@ -83,6 +83,7 @@ function picture_uninstall() {
+   variable_del('picture_ckeditor_label');
+   variable_del('picture_updated_to_file_entity_2');
+   variable_del('picture_js_scope');
++  variable_del('picture_polyfill_version');
+ }
+ 
+ /**
