@@ -1,0 +1,13 @@
+diff --git a/media_youtube_preview_image_link.module b/media_youtube_preview_image_link.module
+index dfe48ee..4ab15bb 100644
+--- a/media_youtube_preview_image_link.module
++++ b/media_youtube_preview_image_link.module
+@@ -67,7 +67,7 @@
+     '#type' => 'container',
+     'content' => $element,
+     '#attributes' => array(
+-      'class' => array('media-youtube-preview-image-link'),
++      'class' => array('media-youtube-preview-image-link', 'media-element'),
+     ),
+   );
+ }
