@@ -1,0 +1,28 @@
+diff --git a/includes/themes/media-soundcloud-audio.tpl.php b/includes/themes/media-soundcloud-audio.tpl.php
+index e80c59c..4351eb1 100755
+--- a/includes/themes/media-soundcloud-audio.tpl.php
++++ b/includes/themes/media-soundcloud-audio.tpl.php
+@@ -16,7 +16,7 @@
+  * the JS will respect that when resizing later.
+  */
+ ?>
+-<div class="media-soundcloud-outer-wrapper" id="media-soundcloud-<?php print $id; ?>">
++<div class="<?php print $classes; ?> media-soundcloud-<?php print $id; ?>" id="media-soundcloud-<?php print $id; ?>">
+   <div class="media-soundcloud-preview-wrapper" id="<?php print $wrapper_id; ?>">
+     <?php print $output; ?>
+   </div>
+diff --git a/includes/themes/media_soundcloud.theme.inc b/includes/themes/media_soundcloud.theme.inc
+index ec62781..610a4c1 100755
+--- a/includes/themes/media_soundcloud.theme.inc
++++ b/includes/themes/media_soundcloud.theme.inc
+@@ -54,6 +54,10 @@ function media_soundcloud_preprocess_media_soundcloud_audio(&$variables) {
+   $embed_data = $wrapper->getOEmbed($url, $variables['widget_options']);
+ 
+   $variables['output'] = str_replace('width="100%"', 'width="'.$variables['width'].'"', $embed_data['html']);
++
++  if (!in_array('media-element', $variables['classes_array'])) {
++    array_unshift($variables['classes_array'], 'media-element');
++  }
+ }
+ 
+ function theme_media_soundcloud_field_formatter_styles($variables) {
