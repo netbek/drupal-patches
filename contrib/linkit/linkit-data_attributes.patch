@@ -1,0 +1,22 @@
+diff -rupN a/editors/tinymce/linkitDialog.js b/editors/tinymce/linkitDialog.js
+--- a/editors/tinymce/linkitDialog.js	2014-02-27 02:23:39 +0200
++++ b/editors/tinymce/linkitDialog.js	2014-03-26 11:45:23 +0200
+@@ -55,6 +55,18 @@ Drupal.linkit.registerDialogHelper('tiny
+    *   The link object.
+    */
+   insertLink : function(data) {
++    // Replace underscores with hyphens in attribute name in order to support data-* attributes.
++    var keys = Object.keys(data.attributes);
++    for (var i = 0, il = keys.length; i < il; i++) {
++      var key = keys[i];
++      if (key.indexOf('_') >= 0) {
++        var value = data.attributes[key];
++        delete data.attributes[key];
++        key = key.replace(/_/g, '-');
++        data.attributes[key] = value;
++      }
++    }
++
+     var editor = Drupal.settings.linkit.currentInstance.editor,
+     element = editor.dom.getParent(editor.selection.getNode(), 'A');
+ 
