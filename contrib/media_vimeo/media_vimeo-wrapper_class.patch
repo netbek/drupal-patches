@@ -1,0 +1,13 @@
+diff --git a/themes/media_vimeo.theme.inc b/themes/media_vimeo.theme.inc
+index 8eb84f3..d5ef417 100644
+--- a/themes/media_vimeo.theme.inc
++++ b/themes/media_vimeo.theme.inc
+@@ -84,4 +84,8 @@ function media_vimeo_preprocess_media_vimeo_video(&$variables) {
+ 
+   // Build the iframe URL with options query string.
+   $variables['url'] = url($protocol . 'player.vimeo.com/video/' . $variables['video_id'], array('query' => $query, 'external' => TRUE));
++
++  if (!in_array('media-element', $variables['classes_array'])) {
++    array_unshift($variables['classes_array'], 'media-element');
++  }
+ }
