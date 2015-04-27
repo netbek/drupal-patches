@@ -1,0 +1,21 @@
+diff -rupN a/modules/user/user.js b/modules/user/user.js
+--- a/modules/user/user.js	2014-01-15 21:43:16 +0200
++++ b/modules/user/user.js	2014-03-22 19:31:02 +0200
+@@ -23,7 +23,7 @@ Drupal.behaviors.password = {
+ 
+       // Add the description box.
+       var passwordMeter = '<div class="password-strength"><div class="password-strength-text" aria-live="assertive"></div><div class="password-strength-title">' + translate['strengthTitle'] + '</div><div class="password-indicator"><div class="indicator"></div></div></div>';
+-      $(confirmInput).parent().after('<div class="password-suggestions description"></div>');
++      $(confirmInput).parent().after('<div class="password-suggestions description alert alert-info"></div>');
+       $(innerWrapper).prepend(passwordMeter);
+       var passwordDescription = $('div.password-suggestions', outerWrapper).hide();
+ 
+@@ -70,7 +70,7 @@ Drupal.behaviors.password = {
+           }
+ 
+           // Fill in the success message and set the class accordingly.
+-          var confirmClass = success ? 'ok' : 'error';
++          var confirmClass = success ? 'ok text-success' : 'error text-danger';
+           confirmChild.html(translate['confirm' + (success ? 'Success' : 'Failure')]).addClass(confirmClass);
+           this.confirmClass = confirmClass;
+         }
