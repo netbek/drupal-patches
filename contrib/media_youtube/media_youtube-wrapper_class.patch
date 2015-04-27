@@ -1,0 +1,13 @@
+diff --git a/themes/media_youtube.theme.inc b/themes/media_youtube.theme.inc
+index 25e339e..43a1d05 100644
+--- a/themes/media_youtube.theme.inc
++++ b/themes/media_youtube.theme.inc
+@@ -125,4 +125,8 @@ function media_youtube_preprocess_media_youtube_video(&$variables) {
+ 
+   // Build the iframe URL with options query string.
+   $variables['url'] = url($protocol . '//www.' . $url_base . '/embed/' . $variables['video_id'], array('query' => $query, 'external' => TRUE));
++
++  if (!in_array('media-element', $variables['classes_array'])) {
++    array_unshift($variables['classes_array'], 'media-element');
++  }
+ }
