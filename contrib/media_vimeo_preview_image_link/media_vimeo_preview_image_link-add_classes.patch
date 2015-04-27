@@ -1,0 +1,13 @@
+diff --git a/media_vimeo_preview_image_link.module b/media_vimeo_preview_image_link.module
+index 8f5ded8..d46072f 100644
+--- a/media_vimeo_preview_image_link.module
++++ b/media_vimeo_preview_image_link.module
+@@ -69,7 +69,7 @@
+       '#type' => 'container',
+       'content' => $element,
+       '#attributes' => array(
+-        'class' => array('media-vimeo-preview-image-link'),
++        'class' => array('media-vimeo-preview-image-link', 'media-element'),
+       ),
+     );
+   }
