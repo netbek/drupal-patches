@@ -1,0 +1,56 @@
+diff --git a/mediaelement.js b/mediaelement.js
+index ffbbc04..76846e6 100644
+--- a/mediaelement.js
++++ b/mediaelement.js
+@@ -22,7 +22,8 @@
+       // run after any other selectors.
+       if (settings.mediaelementAll !== undefined) {
+         $('video,audio', context).once('mediaelement', function() {
+-          $(this).mediaelementplayer();
++          var opts = $(this).data('mediaelementoptions');
++          $(this).mediaelementplayer(opts === undefined ? {} : opts);
+         });
+       }
+     }
+diff --git a/mediaelement.module b/mediaelement.module
+index a99e895..22dde38 100644
+--- a/mediaelement.module
++++ b/mediaelement.module
+@@ -77,6 +77,18 @@ function mediaelement_theme() {
+ }
+ 
+ function theme_mediaelement_video($variables) {
++  $opts = array(
++    'features' => array(),
++    'startVolume' => (float) $variables['settings']['volume'],
++  );
++  foreach ($variables['settings']['features'] as $feature => $value) {
++    if (!empty($value)) {
++      $opts['features'][] = $feature;
++    }
++  }
++
++  $variables['attributes']['data-mediaelementoptions'] = json_encode($opts);
++
+   $output = '<div class="mediaelement-video">';
+   $output .= '<video ' . drupal_attributes($variables['attributes']) . ' ></video>';
+   if ($variables['settings']['download_link']) {
+@@ -87,6 +99,18 @@ function theme_mediaelement_video($variables) {
+ }
+ 
+ function theme_mediaelement_audio($variables) {
++  $opts = array(
++    'features' => array(),
++    'startVolume' => (float) $variables['settings']['volume'],
++  );
++  foreach ($variables['settings']['features'] as $feature => $value) {
++    if (!empty($value)) {
++      $opts['features'][] = $feature;
++    }
++  }
++
++  $variables['attributes']['data-mediaelementoptions'] = json_encode($opts);
++
+   $output = '<div class="mediaelement-audio">';
+   $output .= '<audio ' . drupal_attributes($variables['attributes']) . ' ></audio>';
+   if ($variables['settings']['download_link']) {

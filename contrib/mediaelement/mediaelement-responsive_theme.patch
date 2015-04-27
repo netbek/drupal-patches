@@ -1,0 +1,42 @@
+diff --git a/mediaelement.module b/mediaelement.module
+index 22dde38..90f86fd 100644
+--- a/mediaelement.module
++++ b/mediaelement.module
+@@ -87,6 +87,18 @@ function theme_mediaelement_video($variables) {
+     }
+   }
+ 
++  if (!empty($variables['settings']['responsive'])) {
++    $style = isset($variables['attributes']['style']) ? $variables['attributes']['style'] : '';
++    $variables['attributes']['style'] = aer_set_style_attribute($style, array(
++      'width' => '100%',
++      'height' => '100%',
++            ));
++  }
++  else {
++    $opts['videoHeight'] = (int) $variables['settings']['height'];
++    $opts['videoWidth'] = (int) $variables['settings']['width'];
++  }
++
+   $variables['attributes']['data-mediaelementoptions'] = json_encode($opts);
+ 
+   $output = '<div class="mediaelement-video">';
+@@ -109,6 +121,18 @@ function theme_mediaelement_audio($variables) {
+     }
+   }
+ 
++  if (!empty($variables['settings']['responsive'])) {
++    $style = isset($variables['attributes']['style']) ? $variables['attributes']['style'] : '';
++    $variables['attributes']['style'] = aer_set_style_attribute($style, array(
++      'width' => '100%',
++      'height' => '100%',
++            ));
++  }
++  else {
++    $opts['audioHeight'] = (int) $variables['settings']['height'];
++    $opts['audioWidth'] = (int) $variables['settings']['width'];
++  }
++
+   $variables['attributes']['data-mediaelementoptions'] = json_encode($opts);
+ 
+   $output = '<div class="mediaelement-audio">';

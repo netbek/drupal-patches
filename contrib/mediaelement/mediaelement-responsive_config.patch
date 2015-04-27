@@ -1,0 +1,76 @@
+diff --git a/mediaelement.field.inc b/mediaelement.field.inc
+index f9b0fc8..ba9902e 100644
+--- a/mediaelement.field.inc
++++ b/mediaelement.field.inc
+@@ -15,6 +15,7 @@ function mediaelement_field_formatter_info() {
+     'label' => t('MediaElement Video'),
+     'field types' => array('file', 'link_field'),
+     'settings' => array(
++      'responsive' => variable_get('mediaelement_video_default_responsive', FALSE),
+       'preload' => variable_get('mediaelement_video_default_preload', 'metadata'),
+       'features' => array(
+         'playpause' => variable_get('mediaelement_video_default_features_playpause', 1),
+@@ -38,6 +39,7 @@ function mediaelement_field_formatter_info() {
+     'label' => t('MediaElement Audio'),
+     'field types' => array('file', 'link_field'),
+     'settings' => array(
++      'responsive' => variable_get('mediaelement_audio_default_responsive', FALSE),
+       'preload' => variable_get('mediaelement_audio_default_preload', 'metadata'),
+       'features' => array(
+         'playpause' => variable_get('mediaelement_audio_default_features_playpause', 1),
+@@ -68,6 +70,12 @@ function mediaelement_field_formatter_settings_form($field, $instance, $view_mod
+   $settings = $display['settings'];
+   $element = array();
+ 
++  $element['responsive'] = array(
++    '#title' => t('Responsive width and height'),
++    '#type' => 'checkbox',
++    '#default_value' => $settings['responsive'],
++  );
++
+   $element['preload'] = array(
+     '#title' => t('Preload media'),
+     '#type' => 'select',
+@@ -187,13 +195,15 @@ function mediaelement_field_formatter_view($entity_type, $entity, $field, $insta
+     $js_settings = array();
+     $js_settings['opts'] = array();
+     $js_settings['controls'] = (bool)$settings['controls'];
+-    if ($display['type'] == 'mediaelement_video') {
+-      $js_settings['opts']['videoHeight'] = (int)$settings['height'];
+-      $js_settings['opts']['videoWidth'] = (int)$settings['width'];
+-    }
+-    elseif ($display['type'] == 'mediaelement_audio') {
+-      $js_settings['opts']['audioHeight'] = (int)$settings['height'];
+-      $js_settings['opts']['audioWidth'] = (int)$settings['width'];
++    if (empty($settings['responsive'])) {
++      if ($display['type'] == 'mediaelement_video') {
++        $js_settings['opts']['videoHeight'] = (int) $settings['height'];
++        $js_settings['opts']['videoWidth'] = (int) $settings['width'];
++      }
++      elseif ($display['type'] == 'mediaelement_audio') {
++        $js_settings['opts']['audioHeight'] = (int) $settings['height'];
++        $js_settings['opts']['audioWidth'] = (int) $settings['width'];
++      }
+     }
+ 
+     $js_settings['opts']['features'] = array();
+diff --git a/mediaelement.install b/mediaelement.install
+index 0ca8e03..334d324 100644
+--- a/mediaelement.install
++++ b/mediaelement.install
+@@ -10,6 +10,7 @@
+  */
+ function mediaelement_uninstall() {
+   variable_del('mediaelement_sitewide');
++  variable_del('mediaelement_audio_default_responsive');
+   variable_del('mediaelement_audio_default_preload');
+   variable_del('mediaelement_audio_default_features_playpause');
+   variable_del('mediaelement_audio_default_features_current');
+@@ -25,6 +26,7 @@ function mediaelement_uninstall() {
+   variable_del('mediaelement_audio_default_class');
+   variable_del('mediaelement_audio_default_download_link');
+   variable_del('mediaelement_audio_default_download_text');
++  variable_del('mediaelement_video_default_responsive');
+   variable_del('mediaelement_video_default_preload');
+   variable_del('mediaelement_video_default_features_playpause');
+   variable_del('mediaelement_video_default_features_current');

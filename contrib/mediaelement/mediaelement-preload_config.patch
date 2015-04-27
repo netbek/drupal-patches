@@ -1,0 +1,67 @@
+diff --git a/mediaelement.field.inc b/mediaelement.field.inc
+index 8371de3..f9b0fc8 100644
+--- a/mediaelement.field.inc
++++ b/mediaelement.field.inc
+@@ -15,6 +15,7 @@ function mediaelement_field_formatter_info() {
+     'label' => t('MediaElement Video'),
+     'field types' => array('file', 'link_field'),
+     'settings' => array(
++      'preload' => variable_get('mediaelement_video_default_preload', 'metadata'),
+       'features' => array(
+         'playpause' => variable_get('mediaelement_video_default_features_playpause', 1),
+         'current' => variable_get('mediaelement_video_default_features_current', 1),
+@@ -37,6 +38,7 @@ function mediaelement_field_formatter_info() {
+     'label' => t('MediaElement Audio'),
+     'field types' => array('file', 'link_field'),
+     'settings' => array(
++      'preload' => variable_get('mediaelement_audio_default_preload', 'metadata'),
+       'features' => array(
+         'playpause' => variable_get('mediaelement_audio_default_features_playpause', 1),
+         'current' => variable_get('mediaelement_audio_default_features_current', 1),
+@@ -66,6 +68,18 @@ function mediaelement_field_formatter_settings_form($field, $instance, $view_mod
+   $settings = $display['settings'];
+   $element = array();
+ 
++  $element['preload'] = array(
++    '#title' => t('Preload media'),
++    '#type' => 'select',
++    '#options' => array(
++      'none' => t('No'),
++      'metadata' => t('Only metadata'),
++      'auto' => t('Yes'),
++    ),
++    '#description' => t("Preloading media before it's requested isn't available in all browsers."),
++    '#default_value' => $settings['preload'],
++  );
++
+   $element['features'] = array(
+     '#title' => t('Features'),
+     '#description' => t('Controls on the control bar.'),
+@@ -193,6 +207,7 @@ function mediaelement_field_formatter_view($entity_type, $entity, $field, $insta
+     $class = 'mediaelement-formatter-identifier-' . time() . '-' . $id++;
+     $element[$delta] = array(
+       '#attributes' => array(
++        'preload' => $settings['preload'],
+         'src' => file_create_url($src),
+         'class' => $class,
+       ),
+diff --git a/mediaelement.install b/mediaelement.install
+index 2b58fce..0ca8e03 100644
+--- a/mediaelement.install
++++ b/mediaelement.install
+@@ -10,6 +10,7 @@
+  */
+ function mediaelement_uninstall() {
+   variable_del('mediaelement_sitewide');
++  variable_del('mediaelement_audio_default_preload');
+   variable_del('mediaelement_audio_default_features_playpause');
+   variable_del('mediaelement_audio_default_features_current');
+   variable_del('mediaelement_audio_default_features_progress');
+@@ -24,6 +25,7 @@ function mediaelement_uninstall() {
+   variable_del('mediaelement_audio_default_class');
+   variable_del('mediaelement_audio_default_download_link');
+   variable_del('mediaelement_audio_default_download_text');
++  variable_del('mediaelement_video_default_preload');
+   variable_del('mediaelement_video_default_features_playpause');
+   variable_del('mediaelement_video_default_features_current');
+   variable_del('mediaelement_video_default_features_progress');

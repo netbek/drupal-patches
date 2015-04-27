@@ -1,0 +1,22 @@
+diff --git a/mediaelement.module b/mediaelement.module
+index 90f86fd..1026900 100644
+--- a/mediaelement.module
++++ b/mediaelement.module
+@@ -101,7 +101,7 @@ function theme_mediaelement_video($variables) {
+ 
+   $variables['attributes']['data-mediaelementoptions'] = json_encode($opts);
+ 
+-  $output = '<div class="mediaelement-video">';
++  $output = '<div class="mediaelement-video media-element">';
+   $output .= '<video ' . drupal_attributes($variables['attributes']) . ' ></video>';
+   if ($variables['settings']['download_link']) {
+     $output .= '<div class="mediaelement-download-link"><a href="' . $variables['attributes']['src'] . '">' . filter_xss_admin($variables['settings']['download_text']) . '</a></div>';
+@@ -135,7 +135,7 @@ function theme_mediaelement_audio($variables) {
+ 
+   $variables['attributes']['data-mediaelementoptions'] = json_encode($opts);
+ 
+-  $output = '<div class="mediaelement-audio">';
++  $output = '<div class="mediaelement-audio media-element">';
+   $output .= '<audio ' . drupal_attributes($variables['attributes']) . ' ></audio>';
+   if ($variables['settings']['download_link']) {
+     $output .= '<div class="mediaelement-download-link"><a href="' . $variables['attributes']['src'] . '">' . filter_xss_admin($variables['settings']['download_text']) . '</a></div>';
