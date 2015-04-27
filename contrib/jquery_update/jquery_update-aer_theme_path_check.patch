@@ -1,0 +1,13 @@
+diff -rupN a/jquery_update.module b/jquery_update.module
+--- a/jquery_update.module	2013-10-13 22:22:41 +0200
++++ b/jquery_update.module	2014-03-24 12:27:33 +0200
+@@ -89,7 +89,8 @@ function jquery_update_library_alter(&$j
+     // Replace jQuery with the alternative version.
+     $admin_version = variable_get('jquery_update_jquery_admin_version', '');
+ 
+-    if (!empty($admin_version) && path_is_admin(current_path())) {
++    global $theme;
++    if (!empty($admin_version) && path_is_admin(current_path()) && variable_get('admin_theme', FALSE) == $theme && !(function_exists('aer_theme_path_requires_jquery_update') && aer_theme_path_requires_jquery_update(current_path()))) {
+       if (version_compare($version, $admin_version, '!=')) {
+         $version = $admin_version;
+       }
