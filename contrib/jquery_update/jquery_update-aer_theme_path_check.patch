@@ -1,7 +1,8 @@
-diff -rupN a/jquery_update.module b/jquery_update.module
---- a/jquery_update.module	2013-10-13 22:22:41 +0200
-+++ b/jquery_update.module	2014-03-24 12:27:33 +0200
-@@ -89,7 +89,8 @@ function jquery_update_library_alter(&$j
+diff --git a/jquery_update.module b/jquery_update.module
+index 956c9e5..8507a3d 100644
+--- a/jquery_update.module
++++ b/jquery_update.module
+@@ -89,7 +89,8 @@ function jquery_update_library_alter(&$javascript, $module) {
      // Replace jQuery with the alternative version.
      $admin_version = variable_get('jquery_update_jquery_admin_version', '');
  
