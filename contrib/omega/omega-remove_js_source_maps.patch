@@ -1,0 +1,13 @@
+diff --git a/omega/includes/scripts.inc b/omega/includes/scripts.inc
+index edc84a2..29ca13c 100644
+--- a/omega/includes/scripts.inc
++++ b/omega/includes/scripts.inc
+@@ -388,6 +388,8 @@ function omega_build_js_cache($files) {
+         $contents .= file_get_contents($info['data']) . ";\n";
+       }
+     }
++    // Remove JS source and source mapping urls or these may cause 404 errors.
++    $contents = preg_replace('/^\/\/(#|@)\s(sourceURL|sourceMappingURL)=\s*(\S*?)\s*$/m', '', $contents);
+     // Prefix filename to prevent blocking by firewalls which reject files
+     // starting with "ad*".
+     $filename = 'js_' . drupal_hash_base64($contents) . '.js';
