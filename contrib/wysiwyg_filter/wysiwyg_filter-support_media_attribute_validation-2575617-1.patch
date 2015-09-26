@@ -1,0 +1,40 @@
+diff --git a/wysiwyg_filter.pages.inc b/wysiwyg_filter.pages.inc
+index 0a91d82..f6c29f2 100644
+--- a/wysiwyg_filter.pages.inc
++++ b/wysiwyg_filter.pages.inc
+@@ -429,6 +429,35 @@ function _wysiwyg_filter_xss_attributes($attr, $element = '') {
+         // Element ID is valid, check_plain result.
+         $attrinfo['value'] = check_plain($attrinfo['value']);
+       }
++      else if ($attrname == 'media') {
++        $dirty_queries = explode(',', decode_entities($attrinfo['value']));
++        $sanitized_queries = array();
++
++        foreach ($dirty_queries as $dirty_query) {
++          $dirty_query = trim($dirty_query);
++          $sanitized_query = '';
++
++          if (preg_match('#^(only|not) [a-z]+ and#i', $dirty_query, $matches)) {
++            $sanitized_query = $matches[0];
++            $expressions = trim(substr($dirty_query, strlen($matches[0])));
++          }
++          else {
++            $expressions = $dirty_query;
++          }
++
++          preg_match_all('#\(\s*([\-a-z]+)\s*(:[\s\./a-z0-9]+)?\s*\)#i', $expressions, $matches);
++
++          if (empty($matches)) {
++            // Ignore query if it has no valid expressions.
++            continue;
++          }
++
++          $sanitized_query .= ' ' . implode(' and ', $matches[0]);
++          $sanitized_queries[] = $sanitized_query;
++        }
++
++        $attrinfo['value'] = check_plain(implode(', ', $sanitized_queries));
++      }
+       else {
+         // All attribute values are checked for bad protocols. This is the same
+         // exact method used by Drupal's filter_xss().
