@@ -46,19 +46,19 @@ Version: 7.x-2.12
 Patch: [picture-remove-newline-2574163-2.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/picture/picture-remove-newline-2574163-2.patch)
 
 
-### WYSIWYG Filter - Issue [2574163](https://www.drupal.org/node/2575617#comment-10379437)
+### WYSIWYG Filter - Issue [2575617](https://www.drupal.org/node/2575617#comment-10379437)
 
 This patch adds support for media attribute, with validation.
 
 Version: 7.x-2.12
 
-Patch: [picture-remove-newline-2574163-2.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/wysiwyg_filter/wysiwyg_filter-support_media_attribute_validation-2575617-1.patch)
+Patch: [wysiwyg_filter-support_media_attribute_validation-2575617-1.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/wysiwyg_filter/wysiwyg_filter-support_media_attribute_validation-2575617-1.patch)
 
 
-### WYSIWYG Filter - Issue [2574163](https://www.drupal.org/node/2575617#comment-10379437)
+### WYSIWYG Filter - Issue [2575617](https://www.drupal.org/node/2575617#comment-10379437)
 
 This patch adds support for media attribute, without validation.
 
 Version: 7.x-2.12
 
-Patch: [picture-remove-newline-2574163-2.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/wysiwyg_filter/wysiwyg_filter-support_media_attribute-2575617-1.patch)
+Patch: [wysiwyg_filter-support_media_attribute-2575617-1.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/wysiwyg_filter/wysiwyg_filter-support_media_attribute-2575617-1.patch)
