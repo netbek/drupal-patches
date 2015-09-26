@@ -35,3 +35,12 @@ This patch deletes formatter settings on uninstall.
 Version: 7.x-2.x commit [741f444](http://drupalcode.org/project/picture.git/commit/741f444)
 
 Patch: [picture-delete-formatter-settings-on-uninstall-2443319-1_0.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/picture/picture-delete-formatter-settings-on-uninstall-2443319-1_0.patch)
+
+
+### Picture - Issue [2574163](https://www.drupal.org/node/2574163#comment-10377421)
+
+This patch removes newline characters from theme_picture() output.
+
+Version: 7.x-2.12
+
+Patch: [picture-remove-newline-2574163-2.patch](https://raw.github.com/netbek/drupal-patches/7.x/contrib/picture/picture-remove-newline-2574163-2.patch)

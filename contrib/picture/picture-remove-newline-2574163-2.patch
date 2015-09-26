@@ -1,0 +1,13 @@
+diff --git a/picture.module b/picture.module
+index eb1d1d8..ff50116 100644
+--- a/picture.module
++++ b/picture.module
+@@ -1509,7 +1509,7 @@ function theme_picture(array $variables) {
+ 
+     $output[] = '</picture>';
+ 
+-    return implode("\n", $output);
++    return implode("", $output);
+   }
+ }
+ 
